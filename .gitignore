@@ -1,0 +1,8 @@
+# PlatformIO
+.pioenvs
+.clang_complete
+.gcc-flags.json
+
+# NetBeans IDE
+build/
+nbproject/
