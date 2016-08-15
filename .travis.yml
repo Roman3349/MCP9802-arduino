@@ -7,7 +7,8 @@ cache:
     directories:
         - "~/.platformio"
 env:
-    - PLATFORMIO_CI_SRC=examples/DDC-SE-01+Serial/DDC-SE-01+Serial/DDC-SE-01+Serial.ino
+    - PLATFORMIO_CI_SRC=examples/DDC-SE-01-Serial/DDC-SE-01-Serial/DDC-SE-01-Serial.ino
+    - PLATFORMIO_CI_SRC=examples/DDC-SE-01-W5100-Thingspeak/DDC-SE-01-W5100-Thingspeak/DDC-SE-01-W5100-Thingspeak.ino
 install:
     # Install PlatformIO
     - pip install -U platformio
