@@ -16,4 +16,4 @@ install:
     # Install LiquidCrystal_I2C library
     - platformio lib install 576
 script:
-    - platformio ci --lib="." --board=uno --board=due --board=leonardo --board=nanoatmega328 --board=diecimilaatmega168 --board=megaatmega2560 --board=megaatmega1280 --board=nodemcuv2
+    - platformio ci --lib="." --project-conf platformio.ini
