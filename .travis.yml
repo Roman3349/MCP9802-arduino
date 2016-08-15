@@ -12,4 +12,4 @@ install:
     # Install PlatformIO
     - pip install -U platformio
 script:
-    - platformio ci --lib="." --board=uno --board=due --board=leonardo --board=nanoatmega328 --board=diecimilaatmega168 --board=megaatmega2560 --board=megaatmega1280 --board=chipkit_uc32 --board=nodemcuv2
+    - platformio ci --lib="." --board=uno --board=due --board=leonardo --board=nanoatmega328 --board=diecimilaatmega168 --board=megaatmega2560 --board=megaatmega1280 --board=nodemcuv2
