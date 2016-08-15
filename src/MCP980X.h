@@ -21,6 +21,7 @@
 #ifndef MCP980X_H
 #define MCP980X_H
 
+#include <stddef.h>
 #include <stdint.h>
 #include <Arduino.h>
 #include <Wire.h>
