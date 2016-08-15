@@ -11,9 +11,10 @@ env:
     - PLATFORMIO_CI_SRC=examples/DDC-SE-01-LCD-I2C/DDC-SE-01-LCD-I2C/DDC-SE-01-LCD-I2C.ino
     - PLATFORMIO_CI_SRC=examples/DDC-SE-01-W5100-Thingspeak/DDC-SE-01-W5100-Thingspeak/DDC-SE-01-W5100-Thingspeak.ino
 install:
-    # Install PlatformIO
-    - pip install -U platformio
-    # Install LiquidCrystal_I2C library
-    - platformio lib install 576
+    # - pip install -U platformio
+    # Install development version of PlatformIO 3.0 (remove line below after release)
+    - pip install -U https://github.com/platformio/platformio/archive/develop.zip
+    
+    - platformio lib install LiquidCrystal_I2C
 script:
     - platformio ci --lib="." --project-conf platformio.ini
