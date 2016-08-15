@@ -7,7 +7,7 @@ cache:
     directories:
         - "~/.platformio"
 env:
-    - PLATFORMIO_CI_SRC=examples/DDC-SE-01/DDC-SE-01/DDC-SE-01.ino
+    - PLATFORMIO_CI_SRC=examples/DDC-SE-01+Serial/DDC-SE-01+Serial/DDC-SE-01+Serial.ino
 install:
     # Install PlatformIO
     - pip install -U platformio
