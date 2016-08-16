@@ -49,9 +49,15 @@ void setup() {
   while (!Serial) {
   }
   mcp.begin();
-  while (!mcp.available()) {
+  if (!mcp.available()) {
+    // Set 12 bit sensor resolution
+    mcp.setResolution(12);
+    Serial.println("OK.");
+  } else {
+    Serial.println("failed. Check connections.");
+    while (true) {
+    }
   }
-  mcp.setResolution(12);
   startEthernet();
 }
 
