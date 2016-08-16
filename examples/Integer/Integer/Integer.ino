@@ -32,21 +32,27 @@ void setup() {
   // Wait for Serial
   while (!Serial) {
   }
+  Serial.print("Initializing temperature sensor (integer): ");
   mcp.begin();
-  while (!mcp.available()) {
+  if (mcp.available()) {
+    Serial.println("OK.");
+  } else {
+    Serial.println("failed. Check connections.");
+    while (true) {
+    }
   }
-  mcp.setResolution(12);
 }
 
 /**
  * Main loop
  */
 void loop() {
-  float temp = mcp.readTemperature();
+  // Temperature is multiplied by 16
+  float temp = mcp.readTemperatureInt();
   Serial.print("Temperature: ");
-  Serial.print(temp, 4);
+  Serial.print(temp);
   Serial.print("*C\t");
-  Serial.print(mcp.toFahrenheit(temp), 4);
+  Serial.print(mcp.toFahrenheit(temp));
   Serial.println("*F");
   delay(500);
 }

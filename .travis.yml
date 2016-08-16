@@ -7,14 +7,19 @@ cache:
     directories:
         - "~/.platformio"
 env:
-    - PLATFORMIO_CI_SRC=examples/DDC-SE-01-Serial/DDC-SE-01-Serial/DDC-SE-01-Serial.ino
-    - PLATFORMIO_CI_SRC=examples/DDC-SE-01-LCD-I2C/DDC-SE-01-LCD-I2C/DDC-SE-01-LCD-I2C.ino
-    - PLATFORMIO_CI_SRC=examples/DDC-SE-01-W5100-Thingspeak/DDC-SE-01-W5100-Thingspeak/DDC-SE-01-W5100-Thingspeak.ino
+    - PLATFORMIO_CI_SRC=examples/Alert/Alert/Alert.ino
+    - PLATFORMIO_CI_SRC=examples/Float/Float/Float.ino
+    - PLATFORMIO_CI_SRC=examples/Integer/Integer/Integer.ino
+    - PLATFORMIO_CI_SRC=examples/OneShot/OneShot/OneShot.ino
+    - PLATFORMIO_CI_SRC=examples/LCD-I2C/LCD-I2C/LCD-I2C.ino
+matrix:
+    allow_failures:
+        - env: PLATFORMIO_CI_SRC=examples/OneShot/OneShot/OneShot.ino
+        - env: PLATFORMIO_CI_SRC=examples/LCD-I2C/LCD-I2C/LCD-I2C.ino
 install:
     # - pip install -U platformio
     # Install development version of PlatformIO 3.0 (remove line below after release)
     - pip install -U https://github.com/platformio/platformio/archive/develop.zip
-    
     - platformio lib -g install LiquidCrystal_I2C
 script:
     - platformio ci --lib="." --project-conf platformio.ini
