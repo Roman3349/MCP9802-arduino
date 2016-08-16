@@ -42,7 +42,7 @@ void MCP980X::begin() {
 bool MCP980X::available() {
 	uint8_t config;
 	this->read(REG_CONFIG, &config, 1);
-	return(config != 0);
+	return(config == 0);
 }
 
 /**

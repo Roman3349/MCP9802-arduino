@@ -35,6 +35,8 @@ void setup() {
   Serial.print("Initializing temperature sensor (float): ");
   mcp.begin();
   if (mcp.available()) {
+    // Set 12 bit sensor resolution
+    mcp.setResolution(12);
     Serial.println("OK.");
   } else {
     Serial.println("failed. Check connections.");
