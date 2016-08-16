@@ -12,10 +12,11 @@ env:
     - PLATFORMIO_CI_SRC=examples/Integer/Integer/Integer.ino
     - PLATFORMIO_CI_SRC=examples/OneShot/OneShot/OneShot.ino
     - PLATFORMIO_CI_SRC=examples/LCD-I2C/LCD-I2C/LCD-I2C.ino
+    - PLATFORMIO_CI_SRC=examples/W5100-Thingspeak/W5100-Thingspeak/W5100-Thingspeak.ino
 matrix:
     allow_failures:
-        - env: PLATFORMIO_CI_SRC=examples/OneShot/OneShot/OneShot.ino
         - env: PLATFORMIO_CI_SRC=examples/LCD-I2C/LCD-I2C/LCD-I2C.ino
+        - env: PLATFORMIO_CI_SRC=examples/W5100-Thingspeak/W5100-Thingspeak/W5100-Thingspeak.ino
 install:
     # - pip install -U platformio
     # Install development version of PlatformIO 3.0 (remove line below after release)
