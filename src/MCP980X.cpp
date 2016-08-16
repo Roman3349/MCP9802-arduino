@@ -236,7 +236,7 @@ float MCP980X::readTemperature() {
  * @return Temperature in Fahrenheit
  */
 int16_t MCP980X::toFahrenheit(int16_t temp) {
-	return((int16_t)(temp * (9 / 5)) + 32);
+	return((int16_t) (temp * (9 / 5)) + 32);
 }
 
 /**

@@ -28,33 +28,33 @@ MCP980X mcp(0x4B);
  * Init peripherals
  */
 void setup() {
-  Serial.begin(9600);
-  // Wait for Serial
-  while (!Serial) {
-  }
-  Serial.print("Initializing temperature sensor in the one-shot mode: ");
-  mcp.begin();
-  if (mcp.available()) {
-    Serial.println("OK.");
-    mcp.setResolution(12);
-    Serial.println("Setting one-shot mode.");
-    mcp.setOneShot(true);
-  } else {
-    Serial.println("failed. Check connections.");
-    while (true) {
-    }
-  }
+	Serial.begin(9600);
+	// Wait for Serial
+	while (!Serial) {
+	}
+	Serial.print("Initializing temperature sensor in the one-shot mode: ");
+	mcp.begin();
+	if (mcp.available()) {
+		Serial.println("OK.");
+		mcp.setResolution(12);
+		Serial.println("Setting one-shot mode.");
+		mcp.setOneShot(true);
+	} else {
+		Serial.println("failed. Check connections.");
+		while (true) {
+		}
+	}
 }
 
 /**
  * Main loop
  */
 void loop() {
-  float temp = mcp.readTemperature();
-  Serial.print("Temperature: ");
-  Serial.print(temp, 4);
-  Serial.print("*C\t");
-  Serial.print(mcp.toFahrenheit(temp), 4);
-  Serial.println("*F");
-  delay(2500);
+	float temp = mcp.readTemperature();
+	Serial.print("Temperature: ");
+	Serial.print(temp, 4);
+	Serial.print("*C\t");
+	Serial.print(mcp.toFahrenheit(temp), 4);
+	Serial.println("*F");
+	delay(2500);
 }

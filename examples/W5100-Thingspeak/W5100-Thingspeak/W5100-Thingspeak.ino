@@ -44,82 +44,82 @@ int failedCounter = 0;
  * Init peripherals
  */
 void setup() {
-  Serial.begin(9600);
-  // Wait for Serial
-  while (!Serial) {
-  }
-  mcp.begin();
-  if (!mcp.available()) {
-    // Set 12 bit sensor resolution
-    mcp.setResolution(12);
-    Serial.println("OK.");
-  } else {
-    Serial.println("failed. Check connections.");
-    while (true) {
-    }
-  }
-  startEthernet();
+	Serial.begin(9600);
+	// Wait for Serial
+	while (!Serial) {
+	}
+	mcp.begin();
+	if (!mcp.available()) {
+		// Set 12 bit sensor resolution
+		mcp.setResolution(12);
+		Serial.println("OK.");
+	} else {
+		Serial.println("failed. Check connections.");
+		while (true) {
+		}
+	}
+	startEthernet();
 }
 
 /**
  * Main loop
  */
 void loop() {
-  float temp = mcp.readTemperature();
-  String tempString = String(temp, DEC);
-  if (client.available())  {
-    char c = client.read();
-    Serial.print(c);
-  }
-  if (!client.connected() && lastConnected)  {
-    Serial.println("...disconnected");
-    Serial.println();
-    client.stop();
-  }
-  if (!client.connected() && (millis() - lastConnectionTime > updateThingSpeakInterval)) {
-    updateThingSpeak("field1=" + tempString);
-  }
-  if (failedCounter > 3) {
-    startEthernet();
-  }
-  lastConnected = client.connected();
+	float temp = mcp.readTemperature();
+	String tempString = String(temp, DEC);
+	if (client.available()) {
+		char c = client.read();
+		Serial.print(c);
+	}
+	if (!client.connected() && lastConnected) {
+		Serial.println("...disconnected");
+		Serial.println();
+		client.stop();
+	}
+	if (!client.connected() && (millis() - lastConnectionTime > updateThingSpeakInterval)) {
+		updateThingSpeak("field1=" + tempString);
+	}
+	if (failedCounter > 3) {
+		startEthernet();
+	}
+	lastConnected = client.connected();
 }
 
 void updateThingSpeak(String tsData) {
-  if (client.connect(thingSpeakAddress, 80)) {
-    client.print("POST /update HTTP/1.1\n");
-    client.print("Host: api.thingspeak.com\n");
-    client.print("Connection: close\n");
-    client.print("X-THINGSPEAKAPIKEY: " + writeAPIKey + "\n");
-    client.print("Content-Type: application/x-www-form-urlencoded\n");
-    client.print("Content-Length: ");
-    client.print(tsData.length());
-    client.print("\n\n");
-    client.print(tsData);
-    lastConnectionTime = millis();
-    if (client.connected()) {
-      Serial.println("Connecting to ThingSpeak...");
-      failedCounter = 0;
-    } else {
-      failedCounter++;
-      Serial.println("Connection to ThingSpeak failed (" + String(failedCounter, DEC) + ")");
-    }
-  } else {
-    failedCounter++;
-    Serial.println("Connection to ThingSpeak failed (" + String(failedCounter, DEC) + ")");
-    lastConnectionTime = millis();
-  }
+	if (client.connect(thingSpeakAddress, 80)) {
+		client.print("POST /update HTTP/1.1\n");
+		client.print("Host: api.thingspeak.com\n");
+		client.print("Connection: close\n");
+		client.print("X-THINGSPEAKAPIKEY: " + writeAPIKey + "\n");
+		client.print("Content-Type: application/x-www-form-urlencoded\n");
+		client.print("Content-Length: ");
+		client.print(tsData.length());
+		client.print("\n\n");
+		client.print(tsData);
+		lastConnectionTime = millis();
+		if (client.connected()) {
+			Serial.println("Connecting to ThingSpeak...");
+			failedCounter = 0;
+		} else {
+			failedCounter++;
+			Serial.println("Connection to ThingSpeak failed (" + String(failedCounter, DEC) + ")");
+		}
+	} else {
+		failedCounter++;
+		Serial.println("Connection to ThingSpeak failed (" + String(failedCounter, DEC) + ")");
+		lastConnectionTime = millis();
+	}
 }
 
 void startEthernet() {
-  client.stop();
-  Serial.println("Connecting Arduino to network...");
-  Serial.println();
-  delay(1000);
-  if (Ethernet.begin(mac) == 0) {
-    Serial.println("DHCP Failed, reset Arduino to try again");
-  } else {
-    Serial.println("Arduino connected to network using DHCP");
-  }
-  delay(1000);
+	client.stop();
+	Serial.println("Connecting Arduino to network...");
+	Serial.println();
+	delay(1000);
+	if (Ethernet.begin(mac) == 0) {
+		Serial.println("DHCP Failed, reset Arduino to try again");
+	} else {
+		Serial.println("Arduino connected to network using DHCP");
+	}
+	delay(1000);
 }

@@ -31,48 +31,48 @@ bool hasAlert;
  * Init peripherals
  */
 void setup() {
-  Serial.begin(9600);
-  // Wait for Serial
-  while (!Serial) {
-  }
-  Serial.print("Initializing temperature sensor in the alert mode: ");
-  mcp.begin();
-  if (mcp.available()) {
-    // Set 12 bit sensor resolution
-    mcp.setResolution(12);
-    // Temperatures ouuside 20-30*C trigger an alert
-    mcp.setAlertLimits(20, 30);
-    // Interrupt based. active high alert
-    mcp.setAlertMode(mcp.MCP_INTERRUPT, true);
-    // Allow a couple readings outside of the allowed range before triggering an alert
-    mcp.setFaultQueue(mcp.MCP_2_FAULTS);
-    // Use interrupt 0, interrupt pin connected to arduino pin 2
-    attachInterrupt(2, alertHandler, RISING);
-    Serial.println("OK");
-  } else {
-    Serial.println("failed. Check connections.");
-    while (true) {
-    }
-  }
+	Serial.begin(9600);
+	// Wait for Serial
+	while (!Serial) {
+	}
+	Serial.print("Initializing temperature sensor in the alert mode: ");
+	mcp.begin();
+	if (mcp.available()) {
+		// Set 12 bit sensor resolution
+		mcp.setResolution(12);
+		// Temperatures ouuside 20-30*C trigger an alert
+		mcp.setAlertLimits(20, 30);
+		// Interrupt based. active high alert
+		mcp.setAlertMode(mcp.MCP_INTERRUPT, true);
+		// Allow a couple readings outside of the allowed range before triggering an alert
+		mcp.setFaultQueue(mcp.MCP_2_FAULTS);
+		// Use interrupt 0, interrupt pin connected to arduino pin 2
+		attachInterrupt(2, alertHandler, RISING);
+		Serial.println("OK");
+	} else {
+		Serial.println("failed. Check connections.");
+		while (true) {
+		}
+	}
 }
 
 /**
  * Main loop
  */
 void loop() {
-  if (hasAlert) {
-    Serial.println("Alert!");
-    Serial.print("Temperature is");
-    Serial.print(mcp.readTemperature(), 4);
-    Serial.print("*C.");
-    mcp.resetAlert();
-    hasAlert = false;
-  }
+	if (hasAlert) {
+		Serial.println("Alert!");
+		Serial.print("Temperature is");
+		Serial.print(mcp.readTemperature(), 4);
+		Serial.print("*C.");
+		mcp.resetAlert();
+		hasAlert = false;
+	}
 }
 
 /**
  * Temperature alert handler
  */
 void alertHandler() {
-  hasAlert = true;
+	hasAlert = true;
 }
