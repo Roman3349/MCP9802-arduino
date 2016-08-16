@@ -25,5 +25,9 @@
   ],
   "examples": [
     "examples/*/*/*.ino"
+  ],
+  "exclude": [
+    ".gitignore",
+    ".travis.yml"
   ]
 }
