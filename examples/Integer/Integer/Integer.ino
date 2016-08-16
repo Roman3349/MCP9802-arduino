@@ -28,33 +28,33 @@ MCP980X mcp(0x4B);
  * Init peripherals
  */
 void setup() {
-  Serial.begin(9600);
-  // Wait for Serial
-  while (!Serial) {
-  }
-  Serial.print("Initializing temperature sensor (integer): ");
-  mcp.begin();
-  if (mcp.available()) {
-    // Set 12 bit sensor resolution
-    mcp.setResolution(12);
-    Serial.println("OK.");
-  } else {
-    Serial.println("failed. Check connections.");
-    while (true) {
-    }
-  }
+	Serial.begin(9600);
+	// Wait for Serial
+	while (!Serial) {
+	}
+	Serial.print("Initializing temperature sensor (integer): ");
+	mcp.begin();
+	if (mcp.available()) {
+		// Set 12 bit sensor resolution
+		mcp.setResolution(12);
+		Serial.println("OK.");
+	} else {
+		Serial.println("failed. Check connections.");
+		while (true) {
+		}
+	}
 }
 
 /**
  * Main loop
  */
 void loop() {
-  // Temperature is multiplied by 16
-  float temp = mcp.readTemperatureInt();
-  Serial.print("Temperature: ");
-  Serial.print(temp);
-  Serial.print("*C\t");
-  Serial.print(mcp.toFahrenheit(temp));
-  Serial.println("*F");
-  delay(500);
+	// Temperature is multiplied by 16
+	float temp = mcp.readTemperatureInt();
+	Serial.print("Temperature: ");
+	Serial.print(temp);
+	Serial.print("*C\t");
+	Serial.print(mcp.toFahrenheit(temp));
+	Serial.println("*F");
+	delay(500);
 }

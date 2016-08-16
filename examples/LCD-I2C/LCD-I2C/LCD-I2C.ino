@@ -25,47 +25,47 @@ void loop();
 
 // Instances
 MCP980X mcp(0x4B);
-LiquidCrystal_I2C lcd(0x27,16,2); // 16x2 LCD
+LiquidCrystal_I2C lcd(0x27, 16, 2); // 16x2 LCD
 
 /**+
  * Init peripherals
  */
 void setup() {
-  Serial.begin(9600);
-  // Wait for Serial
-  while (!Serial) {
-  }
-  mcp.begin();
-  if (mcp.available()) {
-    // Set 12 bit sensor resolution
-    mcp.setResolution(12);
-    Serial.println("OK.");
-  } else {
-    Serial.println("failed. Check connections.");
-    while (true) {
-    }
-  }
-  lcd.init();
-  lcd.backlight();
-  lcd.setCursor(2, 0);
-  lcd.print("Thermometer");
-  lcd.setCursor(4, 1);
-  lcd.print("MCP980X");
-  delay(500);
+	Serial.begin(9600);
+	// Wait for Serial
+	while (!Serial) {
+	}
+	mcp.begin();
+	if (mcp.available()) {
+		// Set 12 bit sensor resolution
+		mcp.setResolution(12);
+		Serial.println("OK.");
+	} else {
+		Serial.println("failed. Check connections.");
+		while (true) {
+		}
+	}
+	lcd.init();
+	lcd.backlight();
+	lcd.setCursor(2, 0);
+	lcd.print("Thermometer");
+	lcd.setCursor(4, 1);
+	lcd.print("MCP980X");
+	delay(500);
 }
 
 /**
  * Main loop
  */
 void loop() {
-  float temp = mcp.readTemperature();
-  lcd.setCursor(2, 0);
-  lcd.print("Temperature:");
-  lcd.setCursor(0, 1);
-  lcd.print(temp, 2);
-  lcd.print("*C");
-  lcd.setCursor(7 ,1);
-  lcd.print(mcp.toFahrenheit(temp), 2);
-  lcd.print("*F");
-  delay(500);
+	float temp = mcp.readTemperature();
+	lcd.setCursor(2, 0);
+	lcd.print("Temperature:");
+	lcd.setCursor(0, 1);
+	lcd.print(temp, 2);
+	lcd.print("*C");
+	lcd.setCursor(7, 1);
+	lcd.print(mcp.toFahrenheit(temp), 2);
+	lcd.print("*F");
+	delay(500);
 }
