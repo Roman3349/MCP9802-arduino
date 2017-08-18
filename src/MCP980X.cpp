@@ -72,8 +72,6 @@ void MCP980X::read(uint8_t reg, uint8_t *buffer, uint8_t lenght) {
 	Wire.endTransmission();
 	Wire.requestFrom(this->address, lenght);
 	// Wait for data
-	while (Wire.available() < lenght) {
-	}
 	while (lenght--) {
 		*buffer++ = Wire.read();
 	}
