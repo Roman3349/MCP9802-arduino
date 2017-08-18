@@ -3,6 +3,9 @@ python:
     - "2.7"
 sudo: required
 dist: trusty
+branches:
+    except:
+        - gh-pages
 cache:
     directories:
         - "~/.platformio"
@@ -18,9 +21,9 @@ matrix:
         - env: PLATFORMIO_CI_SRC=examples/LCD-I2C/LCD-I2C/LCD-I2C.ino
         - env: PLATFORMIO_CI_SRC=examples/W5100-Thingspeak/W5100-Thingspeak/W5100-Thingspeak.ino
 install:
-    # - pip install -U platformio
-    # Install development version of PlatformIO 3.0 (remove line below after release)
-    - pip install -U https://github.com/platformio/platformio/archive/develop.zip
+    - pip install -U platformio
     - platformio lib -g install LiquidCrystal_I2C
+    # Tmp fix for Microchip gcc-pic32
+    - sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0
 script:
     - platformio ci --lib="." --project-conf platformio.ini
