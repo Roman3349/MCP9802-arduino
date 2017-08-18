@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/Roman3349/MCP980X-arduino.git"
   },
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "Apache-2.0",
   "authors": [{
     "name": "Roman Ondracek",
