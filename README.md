@@ -29,11 +29,6 @@ Arduino library for Microchip MCP9800, MCP9801, MCP9802 and MCP9803 temp sensors
 
 ## Installation
 The best way how to install this library is to [download a latest package](https://github.com/Roman3349/MCP980X-arduino/releases) or use a [platformio](http://platformio.org/):
- * version lower than 3.0:
-```
-platformio lib install 318
-```
- * version 3.0 and upper:
 ```
 platformio lib -g install MCP980X
 ```
