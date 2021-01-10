@@ -9,12 +9,12 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         example:
-        - examples/Alert/Alert/Alert.ino
-        - examples/Float/Float/Float.ino
-        - examples/Integer/Integer/Integer.ino
-        - examples/OneShot/OneShot/OneShot.ino
-        - examples/LCD-I2C/LCD-I2C/LCD-I2C.ino
-        - examples/W5100-Thingspeak/W5100-Thingspeak/W5100-Thingspeak.ino
+        - examples/Alert/Alert/
+        - examples/Float/Float/
+        - examples/Integer/Integer/
+        - examples/OneShot/OneShot/
+        - examples/LCD-I2C/LCD-I2C/
+        - examples/W5100-Thingspeak/W5100-Thingspeak/
 
     steps:
     - uses: actions/checkout@v2
@@ -38,9 +38,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install --upgrade platformio
-        pio lib -g install LiquidCrystal_I2C
 
     - name: Run PlatformIO
-      run: pio ci --lib="." --project-conf platformio.ini
+      run: pio ci --lib="." --project-conf $PROJECT_CONF
       env:
         PLATFORMIO_CI_SRC: ${{ matrix.example }}
+        PROJECT_CONF: "${{ matrix.example }}/../platformio.ini"

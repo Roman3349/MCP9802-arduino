@@ -1,4 +1,5 @@
 # PlatformIO
+.pio/
 .pioenvs
 .clang_complete
 .gcc-flags.json
@@ -6,3 +7,6 @@
 # NetBeans IDE
 build/
 nbproject/
+
+# VS Code
+.vscode/
