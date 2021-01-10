@@ -1,7 +1,7 @@
 # MCP980X-arduino
 
-[![Build Status](https://travis-ci.org/Roman3349/MCP980X-arduino.svg?branch=master)](https://travis-ci.org/Roman3349/MCP980X-arduino)
-[![Apache License](https://img.shields.io/badge/license-APACHE2-blue.svg)](https://github.com/Roman3349/MCP980X-arduino/blob/master/LICENSE)
+[![Build Status](https://badgen.net/github/checks/Roman3349/MCP980X-arduino/master?cache=300)](https://github.com/Roman3349/MCP980X-arduino/actions)
+[![Apache License](https://badgen.net/github/license/Roman3349/MCP980X-arduino)](https://github.com/Roman3349/MCP980X-arduino/blob/master/LICENSE)
 
 Arduino library for Microchip MCP9800, MCP9801, MCP9802 and MCP9803 temp sensors.
 
@@ -28,15 +28,15 @@ Arduino library for Microchip MCP9800, MCP9801, MCP9802 and MCP9803 temp sensors
  * Available Packages: SOT-23-5, MSOP-8, SOIC-8
 
 ## Installation
-The best way how to install this library is to [download a latest package](https://github.com/Roman3349/MCP980X-arduino/releases) or use a [platformio](http://platformio.org/):
+The best way how to install this library is to [download a latest package](https://github.com/Roman3349/MCP980X-arduino/releases) or use [PlatformIO](http://platformio.org/):
 ```
-platformio lib -g install MCP980X
+pio lib install "roman3349/MCP980X"
 ```
 
 ## License
 This library is licensed under Apache License 2.0:
 
- > Copyright 2016 Roman Ondráček
+ > Copyright 2016 Roman Ondráček <ondracek.roman@centrum.cz>
  > 
  > Licensed under the Apache License, Version 2.0 (the "License");
  > you may not use this file except in compliance with the License.
